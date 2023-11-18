@@ -73,15 +73,29 @@ def calculate_intervals(includes, excludes):
     # Subtract exclude intervals from include intervals
     return subtract_intervals(merged_includes, merged_excludes)
 
-
+def convert_to_intervals(interval_string):
+    """
+    Convert a comma-separated interval string to a list of interval lists.
+    Handles single elements as well.
+    """
+    intervals = []
+    for interval in interval_string.split(','):
+        if '-' in interval:
+            intervals.append(list(map(int, interval.split('-'))))
+        else:
+            element = int(interval)
+            intervals.append([element, element])
+    return intervals
 
 @api_view(['POST'])
 def api_process_intervals(request):
     if request.method == 'POST':
         includes = request.POST.get('includes', '')
         excludes = request.POST.get('excludes', '')
-        includes_list = [list(map(int, interval.split('-'))) for interval in includes.split(',')]
-        excludes_list = [list(map(int, interval.split('-'))) for interval in excludes.split(',')]
+   
+        includes_list = convert_to_intervals(includes)
+        excludes_list = convert_to_intervals(excludes)
+        
         result = calculate_intervals(includes_list, excludes_list)
         return Response({'result': result})
     else:
@@ -92,8 +106,11 @@ def html_process_intervals(request):
     if request.method == 'POST':
         includes = request.POST.get('includes', '')
         excludes = request.POST.get('excludes', '')
-        includes_list = [list(map(int, interval.split('-'))) for interval in includes.split(',')]
-        excludes_list = [list(map(int, interval.split('-'))) for interval in excludes.split(',')]
+        
+ 
+        includes_list = convert_to_intervals(includes)
+        excludes_list = convert_to_intervals(excludes)
+        
         result = calculate_intervals(includes_list, excludes_list)
     else:
         result = None
