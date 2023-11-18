@@ -1,4 +1,3 @@
-
 provider "aws" {
   region = var.region
 }
@@ -18,5 +17,17 @@ resource "aws_elastic_beanstalk_environment" "eb_env" {
     namespace = "aws:autoscaling:launchconfiguration"
     name      = "IamInstanceProfile"
     value     = module.eb_common.eb_instance_profile_name
+  }
+
+  setting {
+    namespace = "aws:autoscaling:launchconfiguration"
+    name      = "InstanceType"
+    value     = "t3.micro"
+  }
+
+  setting {
+    namespace = "aws:autoscaling:asg"
+    name      = "MaxSize"
+    value     = "2"
   }
 }
