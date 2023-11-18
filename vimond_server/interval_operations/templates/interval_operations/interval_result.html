@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Interval Result</title>
+</head>
+<body>
+    <h1>Interval Result</h1>
+    <ul>
+        {% for interval in result %}
+            <li>{{ interval.0 }} - {{ interval.1 }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

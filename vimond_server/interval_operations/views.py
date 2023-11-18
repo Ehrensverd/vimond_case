@@ -1,6 +1,5 @@
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-import json
+from django.shortcuts import render
+from django.http import JsonResponse
 
 def calculate_intervals(includes, excludes):
     def merge_intervals(intervals):
@@ -75,13 +74,22 @@ def calculate_intervals(includes, excludes):
 
 
 
-@api_view(["POST"])
+
 def process_intervals(request):
     if request.method == 'POST':
-        data = request.data
-        includes = data.get('includes', [])
-        excludes = data.get('excludes', [])
-        result = calculate_intervals(includes, excludes)
-        return Response({'result': result})
+        includes = request.POST.get('includes', '')
+        excludes = request.POST.get('excludes', '')
+        includes_list = [list(map(int, interval.split('-'))) for interval in includes.split(',')]
+        excludes_list = [list(map(int, interval.split('-'))) for interval in excludes.split(',')]
+        result = calculate_intervals(includes_list, excludes_list)
+        
+        # Check the request's Accept header to determine the response format
+        if 'application/json' in request.META.get('HTTP_ACCEPT', ''):
+            return JsonResponse({'result': result})
+        else:
+            # If not JSON, render an HTML template
+            return render(request, 'interval_operations/interval_result.html', {'result': result})
+    else:
+        return render(request, 'interval_operations/interval_form.html')
 
 
