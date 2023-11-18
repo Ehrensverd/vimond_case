@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Interval Result</title>
+</head>
+<body>
+    <h1>Interval Result</h1>
+    
+    <form method="post" action="{% url 'interval_operations:html_process_intervals' %}">
+        {% csrf_token %}
+        <label for="includes">Includes:</label>
+        <input type="text" name="includes" id="includes" required>
+        <br>
+        <label for="excludes">Excludes:</label>
+        <input type="text" name="excludes" id="excludes" required>
+        <br>
+        <input type="submit" value="Calculate">
+    </form>
+    
+    <h2>Result:</h2>
+    {% if result %}
+        <ul>
+            {% for interval in result %}
+                <li>{{ interval.0 }} - {{ interval.1 }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

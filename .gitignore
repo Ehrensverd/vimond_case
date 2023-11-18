@@ -12,3 +12,17 @@ terraform.rc
 *.auto.tfvars.json
 .terragrunt-cache/
 .terraform-version
+
+# Python
+/venv
+
+# Django
+*.pyc
+__pycache__/
+*.pyo
+*.sqlite3
+*.log
+.DS_Store
+.env
+media/
+staticfiles/
