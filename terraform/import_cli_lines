@@ -1,0 +1,4 @@
+terraform import aws_elastic_beanstalk_application.vimond_case vimond_api
+terraform import aws_iam_role.eb_role eb-role
+
+terraform import aws_iam_instance_profile.eb_instance_profile eb-instance-profile
