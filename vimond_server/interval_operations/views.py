@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 def calculate_intervals(includes, excludes):
     def merge_intervals(intervals):
@@ -73,23 +75,27 @@ def calculate_intervals(includes, excludes):
 
 
 
-
-
-def process_intervals(request):
+@api_view(['POST'])
+def api_process_intervals(request):
     if request.method == 'POST':
         includes = request.POST.get('includes', '')
         excludes = request.POST.get('excludes', '')
         includes_list = [list(map(int, interval.split('-'))) for interval in includes.split(',')]
         excludes_list = [list(map(int, interval.split('-'))) for interval in excludes.split(',')]
         result = calculate_intervals(includes_list, excludes_list)
-        
-        # Check the request's Accept header to determine the response format
-        if 'application/json' in request.META.get('HTTP_ACCEPT', ''):
-            return JsonResponse({'result': result})
-        else:
-            # If not JSON, render an HTML template
-            return render(request, 'interval_operations/interval_result.html', {'result': result})
+        return Response({'result': result})
     else:
-        return render(request, 'interval_operations/interval_form.html')
+        return Response({'error': 'Invalid request method'})
 
 
+def html_process_intervals(request):
+    if request.method == 'POST':
+        includes = request.POST.get('includes', '')
+        excludes = request.POST.get('excludes', '')
+        includes_list = [list(map(int, interval.split('-'))) for interval in includes.split(',')]
+        excludes_list = [list(map(int, interval.split('-'))) for interval in excludes.split(',')]
+        result = calculate_intervals(includes_list, excludes_list)
+    else:
+        result = None
+
+    return render(request, 'interval_operations/interval_operations.html', {'result': result})
