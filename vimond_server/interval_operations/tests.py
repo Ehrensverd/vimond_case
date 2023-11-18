@@ -1,5 +1,7 @@
 from django.test import TestCase
-from .views import calculate_intervals
+
+from .interval_processors import calculate_intervals
+ 
 
 class IntervalTestCase(TestCase):
     def test_example_1(self):
@@ -94,3 +96,38 @@ class IntervalTestCase(TestCase):
         ]
 
         self.assertEqual(calculate_intervals(includes, excludes), expected_result)
+
+    def test_negative_intervals(self):
+        # Includes: -50--10, Excludes: -40--20
+        self.assertEqual(
+            calculate_intervals([[-50, -10]], [[-40, -20]]),
+            [[-50, -41], [-19, -10]]
+        )
+
+    def test_mixed_positive_negative_intervals(self):
+        # Includes: -100--50, 50-100, Excludes: -75--55, 60-80
+        self.assertEqual(
+            calculate_intervals([[-100, -50], [50, 100]], [[-75, -55], [60, 80]]),
+            [[-100, -76], [-54, -50], [50, 59], [81, 100]]
+        )
+
+    def test_overlapping_negative_intervals(self):
+        # Includes: -100--50, -60--10, Excludes: -70--20
+        self.assertEqual(
+            calculate_intervals([[-100, -50], [-60, -10]], [[-70, -20]]),
+            [[-100, -71], [-19, -10]]
+        )
+
+    def test_negative_and_positive_overlapping(self):
+        # Includes: -100-100, Excludes: -50-50
+        self.assertEqual(
+            calculate_intervals([[-100, 100]], [[-50, 50]]),
+            [[-100, -51], [51, 100]]
+        )
+
+    def test_single_number_negative_interval(self):
+        # Test with single number negative interval
+        self.assertEqual(
+            calculate_intervals([[-5, -5]], []),
+            [[-5, -5]]
+        )

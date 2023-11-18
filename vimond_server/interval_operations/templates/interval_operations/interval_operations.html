@@ -10,10 +10,10 @@
     <form method="post" action="{% url 'interval_operations:html_process_intervals' %}">
         {% csrf_token %}
         <label for="includes">Includes:</label>
-        <input type="text" name="includes" id="includes" required>
+        <input type="text" name="includes" id="includes" >
         <br>
         <label for="excludes">Excludes:</label>
-        <input type="text" name="excludes" id="excludes" required>
+        <input type="text" name="excludes" id="excludes" >
         <br>
         <input type="submit" value="Calculate">
     </form>
@@ -26,5 +26,11 @@
             {% endfor %}
         </ul>
     {% endif %}
+
+    {% if error_message %}
+    <div style="color: red;">
+        <strong>Error:</strong> {{ error_message }}
+    </div>
+{% endif %}
 </body>
 </html>
