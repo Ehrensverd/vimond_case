@@ -20,9 +20,9 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-      working-directory: vimond_case/vimond_server
+      working-directory: ./vimond_case/vimond_server
 
     - name: Run Tests
       run: |
         python manage.py test
-      working-directory: vimond_case/vimond_server
+      working-directory: ./vimond_case/vimond_server
