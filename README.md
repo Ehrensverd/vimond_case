@@ -38,10 +38,14 @@ I will split the task into to parts: DevOps and Development.
 # Project Summary
 
 ## PRs
-https://github.com/Ehrensverd/vimond_case/pull/1
-https://github.com/Ehrensverd/vimond_case/pull/2
-https://github.com/Ehrensverd/vimond_case/pull/3
-https://github.com/Ehrensverd/vimond_case/pull/4
+Feat: Terraform Script for AWS Environment Setup https://github.com/Ehrensverd/vimond_case/pull/1
+Feat: Django Server Setup https://github.com/Ehrensverd/vimond_case/pull/2
+Fix: handle negative input intervals; add testshttps://github.com/Ehrensverd/vimond_case/pull/3
+Feat: Implement GitHub Actions CI/CD for Django Server https://github.com/Ehrensverd/vimond_case/pull/4
+
+### Github screenpaste access broke
+After I made the repo public, I noticed my screenshots in the pull requests had all broken.
+So I reuploaded them all into one issue, as I did not have time to put them back in the PRs
 
 ## Completed Work
 - **Terraform Script Setup:** Configured Elastic Beanstalk for both test and production environments using Terraform scripts.
