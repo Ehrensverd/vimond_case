@@ -1,5 +1,0 @@
-branch-defaults:
-  master:
-    environment: Vimond-test
-global:
-  profile: null
