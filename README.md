@@ -42,13 +42,13 @@ Feat: Terraform Script for AWS Environment Setup https://github.com/Ehrensverd/v
 
 Feat: Django Server Setup https://github.com/Ehrensverd/vimond_case/pull/2
 
-Fix: handle negative input intervals; add testshttps://github.com/Ehrensverd/vimond_case/pull/3
+Fix: handle negative input intervals; add tests https://github.com/Ehrensverd/vimond_case/pull/3
 
 Feat: Implement GitHub Actions CI/CD for Django Server https://github.com/Ehrensverd/vimond_case/pull/4
 
 ### Github screenpaste access broke
 After I made the repo public, I noticed my screenshots in the pull requests had all broken.
-So I reuploaded them all into one issue, as I did not have time to put them back in the PRs
+So I reuploaded them all into one [issue](https://github.com/Ehrensverd/vimond_case/issues/6), as I did not have time to put them back in the PRs
 
 ## Completed Work
 - **Terraform Script Setup:** Configured Elastic Beanstalk for both test and production environments using Terraform scripts.
