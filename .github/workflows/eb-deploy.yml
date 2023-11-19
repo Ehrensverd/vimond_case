@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -18,11 +17,6 @@ jobs:
       with:
         python-version: '3.9' 
 
-    - name: Install dependencies
-      run: |
-        pip install awsebcli
-        pip install -r vimond_case/vimond_server/requirements.txt
-
     - name: Deploy to Test Environment
       if: github.ref == 'refs/heads/master'
       env:
@@ -31,4 +25,5 @@ jobs:
         EB_APP_NAME: ${{ secrets.EB_APP_NAME }}
         EB_ENV_NAME: ${{ secrets.EB_ENV_NAME_TEST }}
       run: |
+        pip install awsebcli
         eb deploy $EB_ENV_NAME --profile default
