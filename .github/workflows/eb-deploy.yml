@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -12,21 +13,13 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.9' 
+    - name: Install AWS Elastic Beanstalk CLI
+      run: pip install awsebcli
 
-    - name: Deploy to Test Environment
-      if: github.ref == 'refs/heads/master'
+    - name: Deploy to AWS Elastic Beanstalk
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        EB_APP_NAME: ${{ secrets.EB_APP_NAME }}
-        EB_ENV_NAME: ${{ secrets.EB_ENV_NAME_TEST }}
       run: |
-        pip install awsebcli
-        eb deploy $EB_ENV_NAME --profile default
-      working-directory: vimond_case/vimond_server
-
-
+        eb deploy Vimond-test --profile default --staged
+      working-directory: vimond_case
