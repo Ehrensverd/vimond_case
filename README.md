@@ -36,12 +36,20 @@ I will split the task into to parts: DevOps and Development.
 - **Performance Optimization**: The second part of the development focuses on optimizing performance, possibly through caching and input sorting.
 
 # Project Summary
+
+## PRs
+https://github.com/Ehrensverd/vimond_case/pull/1
+https://github.com/Ehrensverd/vimond_case/pull/2
+https://github.com/Ehrensverd/vimond_case/pull/3
+https://github.com/Ehrensverd/vimond_case/pull/4
+
 ## Completed Work
 - **Terraform Script Setup:** Configured Elastic Beanstalk for both test and production environments using Terraform scripts.
 - **AWS Prod Environment:** The production environment in AWS was terminated to minimize billing.
 - **Django Server Setup:** Implemented a basic setup for a bare-bones Django server.
 - **Testing and Bug Fixing:** Wrote necessary tests and implemented a solution. Addressed a bug related to handling negative integers in set intervals.
 - **CI/CD with GitHub Actions:** Initiated continuous integration and deployment using GitHub Actions, focusing mainly on the test environment.
+ - More about issues I had with this can be read here: https://github.com/Ehrensverd/vimond_case/issues/5 
 - **API Testing Files:** Created `test_endpoint.ps1` for local API testing and `test_endpoint_aws.ps1` for testing on the AWS web server.
 
 ## Future Development
@@ -59,14 +67,14 @@ This project uses a Terraform script to set up Elastic Beanstalk environments fo
 ## Setup Instructions
 #### Windows
 1. Download and install Terraform from [Terraform.io](https://www.terraform.io/downloads.html).
-2. Clone the repository: `git clone <repository-url>`.
+2. Clone the repository: `git clone https://github.com/Ehrensverd/vimond_case`.
 3. Navigate to the Terraform script directory: `cd path/to/terraform-script`.
 4. Initialize Terraform: `terraform init`.
 5. Apply the Terraform script: `terraform apply`.
 
 #### Linux
 1. Install Terraform using your package manager or download from [Terraform.io](https://www.terraform.io/downloads.html).
-2. Clone the repository: `git clone <repository-url>`.
+2. Clone the repository: `git clone https://github.com/Ehrensverd/vimond_case`.
 3. Navigate to the Terraform script directory: `cd path/to/terraform-script`.
 4. Initialize Terraform: `terraform init`.
 5. Apply the Terraform script: `terraform apply`.
@@ -76,7 +84,7 @@ A basic Django server setup is included. Follow these instructions to get it up 
 
 
 #### Windows
-1. Clone the repository: `git clone <repository-url>`.
+1. Clone the repository: `git clone https://github.com/Ehrensverd/vimond_case`.
 2. Navigate to the Django project directory: `cd path/to/vimond_server`.
 3. Create a virtual environment: `python -m venv venv`.
 4. Activate the virtual environment: `.\venv\Scripts\activate`.
@@ -84,7 +92,7 @@ A basic Django server setup is included. Follow these instructions to get it up 
 6. Run the Django server: `python manage.py runserver`.
 
 #### Linux
-1. Clone the repository: `git clone <repository-url>`.
+1. Clone the repository: `git clone https://github.com/Ehrensverd/vimond_case`.
 2. Navigate to the Django project directory: `cd path/to/vimond_server`.
 3. Create a virtual environment: `python3 -m venv venv`.
 4. Activate the virtual environment: `source venv/bin/activate`.
