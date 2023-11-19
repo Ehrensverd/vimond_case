@@ -4,7 +4,10 @@ on:
   push:
     branches:
       - master
-
+defaults:
+  run:
+    working-directory: vimond_server
+    
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -26,3 +29,21 @@ jobs:
       run: |
         python manage.py test
       working-directory: vimond_server
+
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Deploy to Test Environment
+      if: github.ref == 'refs/heads/master'
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        EB_APP_NAME: ${{ secrets.EB_APP_NAME }}
+        EB_ENV_NAME: ${{ secrets.EB_ENV_NAME_TEST }}
+      run: |
+        pip install awsebcli
+        eb deploy $EB_ENV_NAME --profile default
