@@ -22,4 +22,4 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: |
         eb deploy Vimond-test --profile default --staged
-      working-directory: vimond_case
+      working-directory: .
