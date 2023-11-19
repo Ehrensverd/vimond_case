@@ -27,3 +27,6 @@ jobs:
       run: |
         pip install awsebcli
         eb deploy $EB_ENV_NAME --profile default
+      working-directory: ./vimond_case/vimond_server/
+
+
