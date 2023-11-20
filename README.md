@@ -32,7 +32,7 @@ I will split the task into to parts: DevOps and Development.
 ### Algorithm Selection and Optimization
 
 - **Initial Setup**: The first step involves setting up endpoint tests and selecting a preliminary algorithm based on research. This algorithm doesn't need to be optimal at this stage.
-- **Metric Testing**: We will set up metric testing for different algorithms to determine which performs better under various types of input. This involves creating random set generators and automated testing, along with performance timing.
+- **Metric Testing**: I will set up metric testing for different algorithms to determine which performs better under various types of input. This involves creating random set generators and automated testing, along with performance timing.
 - **Performance Optimization**: The second part of the development focuses on optimizing performance, possibly through caching and input sorting.
 
 # Project Summary
